@@ -277,4 +277,4 @@ echo "===================================="
 color_reset
 
 
-CDK_REGION=S3_REGION cdk deploy -a ./app.py --require-approval never
+CDK_REGION=S3_REGION cdk deploy -a ./app.py --require-approval never --capabilities CAPABILITY_NAMED_IAM

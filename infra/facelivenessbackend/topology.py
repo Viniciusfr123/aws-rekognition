@@ -24,4 +24,8 @@ class FaceLiveness(Construct):
     self.api_gateway.bind_start_liveness_session(self.functions)
 
     self.api_gateway.bind_liveness_session_result(self.functions)
+    
+    self.api_gateway.bind_save_face_auth(self.functions)
+
+    self.api_gateway.bind_search_face_by_image(self.functions)
 

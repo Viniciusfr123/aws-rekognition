@@ -29,22 +29,22 @@ class DefaultRflStack(IRflStack):
 
     #Setup FE
 
-    from infra.frontend.topology import FaceLivenessFrontEnd
-    from infra.frontend.topology import TriggerFrontEndBuild
-    from infra.frontend.topology import FaceLivenessFrontEndBuildStatus
+    # from infra.frontend.topology import FaceLivenessFrontEnd
+    # from infra.frontend.topology import TriggerFrontEndBuild
+    # from infra.frontend.topology import FaceLivenessFrontEndBuildStatus
     from infra.frontend.cognito.topology import FaceLivenessCognito
 
     # setup Amazon Cognito for Face Liveness
 
     cognito = FaceLivenessCognito(self,"RflCognito",rfl_stack=self )
 
-    feapp = FaceLivenessFrontEnd(self,"RflWebAPP",rfl_stack=self, apigateway=faceliveness.api_gateway, cognito= cognito)
+    #feapp = FaceLivenessFrontEnd(self,"RflWebAPP",rfl_stack=self, apigateway=faceliveness.api_gateway, cognito= cognito)
 
-    triggerfeapp = TriggerFrontEndBuild(self,"RflWebAPPTrigger",rfl_stack=self,amplifyApp=feapp)
+    #triggerfeapp = TriggerFrontEndBuild(self,"RflWebAPPTrigger",rfl_stack=self,amplifyApp=feapp)
     # feapp = RflFrontEnd(self,"RflWebAPP",rfl_stack=self)
-    triggerfeapp.node.add_dependency(feapp)
-    feappstatus = FaceLivenessFrontEndBuildStatus(self,"RflWebAPPStatus",rfl_stack=self, amplifyApp=feapp , buildTrigger=triggerfeapp)
-    feappstatus.node.add_dependency(triggerfeapp)
+    #triggerfeapp.node.add_dependency(feapp)
+    #feappstatus = FaceLivenessFrontEndBuildStatus(self,"RflWebAPPStatus",rfl_stack=self, amplifyApp=feapp , buildTrigger=triggerfeapp)
+    #feappstatus.node.add_dependency(triggerfeapp)
 
 
   @property

@@ -1,5 +1,10 @@
 
-from infra.facelivenessbackend.functions.definitions import FaceLivenessStartLivenessSession,FaceLivenessSessionResult
+from infra.facelivenessbackend.functions.definitions import (
+  FaceLivenessStartLivenessSession,
+  FaceLivenessSessionResult,
+  SearchFaceByImage,
+  SaveFaceAuth
+)
 from infra.interfaces import IRflStack
 import aws_cdk as core
 from constructs import Construct
@@ -22,13 +27,15 @@ class FaceLivenessFunctionSet(Construct):
 
     self.liveness_session_result = FaceLivenessSessionResult(self,'FaceLivenessSessionResult',
       rfl_stack=rfl_stack, env=default_environment_var)
-    
+
+    self.search_face_by_image = SearchFaceByImage(self, 'SearchFaceByImage',
+      rfl_stack=rfl_stack, env=default_environment_var)
+
+    self.save_face_auth = SaveFaceAuth(self, 'SaveFaceAuth',
+      rfl_stack=rfl_stack, env=default_environment_var)
     
 
     '''
     Grant additional permissions...
     '''
-
-
-
 

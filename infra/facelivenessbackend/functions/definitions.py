@@ -34,10 +34,6 @@ class FaceLivenessBackendFunction(DefaultFunction):
     self.function.role.add_managed_policy(
       policy=iam.ManagedPolicy.from_aws_managed_policy_name('AmazonRekognitionFullAccess'))
 
-  
-
-
-
 class FaceLivenessStartLivenessSession(FaceLivenessBackendFunction):
   def __init__(self, scope: Construct, id:str, rfl_stack:IRflStack,env:Mapping[str,str]={}, **kwargs) -> None:
     super().__init__(scope, id, rfl_stack=rfl_stack, env=env)
@@ -61,4 +57,34 @@ class FaceLivenessSessionResult(FaceLivenessBackendFunction):
   @property
   def component_name(self)->str:
     return 'FaceLivenessSessionResult'
+
+class SearchFaceByImage(FaceLivenessBackendFunction):
+  '''
+  Função para comparar um rosto com a Collection do Rekognition.
+  '''
+  def __init__(self, scope: Construct, id:str, rfl_stack:IRflStack,env:Mapping[str,str]={}, **kwargs) -> None:
+    super().__init__(scope, id, rfl_stack=rfl_stack, env=env)
+
+  @property
+  def source_directory(self)->str:
+    return 'src/backend/search-face-by-image'
+
+  @property
+  def component_name(self)->str:
+    return 'SearchFaceByImage'
+  
+class SaveFaceAuth(FaceLivenessBackendFunction):
+  '''
+  Função para salvar um rosto.
+  '''
+  def __init__(self, scope: Construct, id:str, rfl_stack:IRflStack,env:Mapping[str,str]={}, **kwargs) -> None:
+    super().__init__(scope, id, rfl_stack=rfl_stack, env=env)
+
+  @property
+  def source_directory(self)->str:
+    return 'src/backend/save-face-auth'
+
+  @property
+  def component_name(self)->str:
+    return 'SaveFaceAuth'
 
